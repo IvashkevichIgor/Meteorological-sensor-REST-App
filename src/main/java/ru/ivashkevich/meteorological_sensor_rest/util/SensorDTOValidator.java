@@ -4,29 +4,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-import ru.ivashkevich.meteorological_sensor_rest.models.Sensor;
+import ru.ivashkevich.meteorological_sensor_rest.dto.SensorDTO;
 import ru.ivashkevich.meteorological_sensor_rest.services.SensorService;
 
 @Component
-public class SensorValidator implements Validator {
+public class SensorDTOValidator implements Validator {
 
     private final SensorService sensorService;
 
     @Autowired
-    public SensorValidator(SensorService sensorService) {
+    public SensorDTOValidator(SensorService sensorService) {
         this.sensorService = sensorService;
     }
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return clazz.equals(Sensor.class);
+        return clazz.equals(SensorDTO.class);
     }
 
     @Override
     public void validate(Object target, Errors errors) {
-        Sensor sensor = (Sensor) target;
+        SensorDTO sensorDTO = (SensorDTO) target;
 
-        if (sensorService.hasSensorWithName(sensor.getName())){
+        if (sensorService.hasSensorWithName(sensorDTO.getName())){
             errors.rejectValue("name", "", "Sensor with such name already exists");
         }
     }
