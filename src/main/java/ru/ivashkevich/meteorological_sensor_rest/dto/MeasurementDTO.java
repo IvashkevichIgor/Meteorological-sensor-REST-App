@@ -3,7 +3,6 @@ package ru.ivashkevich.meteorological_sensor_rest.dto;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import ru.ivashkevich.meteorological_sensor_rest.models.Sensor;
 
 public class MeasurementDTO {
 
@@ -16,7 +15,7 @@ public class MeasurementDTO {
     private boolean raining;
 
     @NotNull(message = "Measurement should have sensor name")
-    private Sensor sensor;
+    private SensorDTO sensor;
 
     public double getValue() {
         return value;
@@ -34,11 +33,11 @@ public class MeasurementDTO {
         this.raining = raining;
     }
 
-    public Sensor getSensor() {
+    public SensorDTO getSensor() {
         return sensor;
     }
 
-    public void setSensor(Sensor sensor) {
+    public void setSensor(SensorDTO sensor) {
         this.sensor = sensor;
     }
 }
