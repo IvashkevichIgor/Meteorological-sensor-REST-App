@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import ru.ivashkevich.meteorological_sensor_rest.dto.MeasurementDTO;
+import ru.ivashkevich.meteorological_sensor_rest.dto.RainyDaysCountDTO;
 import ru.ivashkevich.meteorological_sensor_rest.models.Measurement;
 import ru.ivashkevich.meteorological_sensor_rest.services.MeasurementService;
 import ru.ivashkevich.meteorological_sensor_rest.util.MeasurementDTOValidator;
@@ -59,10 +60,15 @@ public class MeasurementsController {
 
             throw new MeasurementNotCreatedException(errorMessages.toString());
         }
-        
+
         measurementService.save(convertToMeasurement(measurementDTO));
 
         return ResponseEntity.ok(HttpStatus.CREATED);
+    }
+
+    @GetMapping("/rainyDaysCount")
+    public RainyDaysCountDTO countRainyDays(){
+        return new RainyDaysCountDTO(measurementService.countRainyDays());
     }
 
     @ExceptionHandler
