@@ -6,4 +6,6 @@ import ru.ivashkevich.meteorological_sensor_rest.models.Sensor;
 
 @Repository
 public interface SensorsRepository extends JpaRepository<Sensor, Integer> {
+
+    boolean existsByName(String name);
 }
