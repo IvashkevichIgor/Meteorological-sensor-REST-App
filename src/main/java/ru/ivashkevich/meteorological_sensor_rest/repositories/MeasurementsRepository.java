@@ -2,8 +2,8 @@ package ru.ivashkevich.meteorological_sensor_rest.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ru.ivashkevich.meteorological_sensor_rest.models.Sensor;
+import ru.ivashkevich.meteorological_sensor_rest.models.Measurement;
 
 @Repository
-public interface SensorRepository extends JpaRepository<Sensor, Integer> {
+public interface MeasurementsRepository extends JpaRepository<Measurement, Integer> {
 }
