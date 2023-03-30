@@ -22,6 +22,7 @@ public class SensorService {
         return sensorRepository.existsByName(name);
     }
 
+    @Transactional
     public void save(Sensor sensor){
         sensor.setRegisteredAt(LocalDateTime.now());
         sensorRepository.save(sensor);
